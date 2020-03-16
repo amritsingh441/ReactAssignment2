@@ -7,6 +7,7 @@ const useStyles = makeStyles(() =>
 createStyles({
     root:{
         marginTop:80,
+        textAlign:'center'
     }
 }))
 
