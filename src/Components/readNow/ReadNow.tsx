@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import NewsService from '../../service/NewsService';
+import ReadNowService from '../../service/ReadNowService';
 import Card from '../../Components/displayCard/DisplayCard';
 import News from '../../model/News';
 
 const ReadNow = () => {
       const [news, setNews] = useState<News[]>([]);
-      const newsData = NewsService();
-      newsData.then(data => { return data }).then(res => {
+      //const newsData = ReadNowService();
+      ReadNowService().then(res => {
             let newsObjList = [...res];
+            console.log("newsObjList:::"+newsObjList);
             if (news.length === 0) {
                   setNews(newsObjList)
             }
       })
+      console.log("news:::"+news);
       let newsCardsList = news.map((newsData: News) =>
             <Card key={newsData.urlToImage} nData={newsData}></Card>)
       return (

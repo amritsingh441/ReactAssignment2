@@ -23,15 +23,12 @@ function App() {
   }
   return (
     <div>
-     
       <Grid container direction = "column">
       <Header token={token} updatePage={updatePage}></Header>
         <Router>
           <Route exact path = '/' component = {() =>(token)?<Redirect to = '/dashboard'></Redirect>: <Login updateToken = {updateToken} />} />
-          <Route exact path = '/dashboard' component = {() => (token)?<Dashboard />:<Redirect to = '/'/>} />
-          <Route exact path = '/readnow' component = {() => (token)?<ReadNow/>:<Redirect to = '/'/>} />
-          <Route exact path = '/dashboard' component = {() => (page == "ReadNow")?<Redirect to = '/readnow'/>:<Dashboard/>} />
-          <Route exact path = '/readnow' component = {() => (page == "Dashboard")?<Redirect to = '/dashboard'/>:<ReadNow/>} />
+          <Route exact path = '/dashboard' component = {() => (page=='ReadNow')?<Redirect to = '/readnow'></Redirect>: (token)?<Dashboard />:<Redirect to = '/'/> } />
+          <Route exact path = '/readnow' component = {() => (page=='Dashboard')?<Redirect to = '/dashboard'></Redirect>:(token)?<ReadNow />:<Redirect to = '/'/>} />
         </Router>
         <Footer></Footer>
       </Grid>
